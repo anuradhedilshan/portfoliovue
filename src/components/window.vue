@@ -161,6 +161,7 @@ template {
 .window_box .actionBar #screen {
 }
 .window_box .actionBar #close {
+  hj
 }
 
 .window_box .actionBar img:hover {
