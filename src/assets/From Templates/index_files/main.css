@@ -1,0 +1,62 @@
+@import "./bootstrap.css";
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+/* Import bootstrap */
+.taskbar-bottom {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #00000014;
+}
+
+
+
+.taskbar-bottom ul {
+	margin: auto;
+}
+
+.taskbar-bottom ul li {
+	display: inline;
+	opacity: 0.9;
+	margin: auto;
+	vertical-align: middle;
+	text-align: center;
+	padding: 2px;
+	
+}
+
+.taskbar-bottom ul li:hover {
+	opacity: 1;
+	transform: rotateY(30deg);
+}
+
+.taskbar-bottom ul.menu {
+	flex: auto;
+}
+
+.taskbar-bottom div.social_bar {
+
+	flex: 2 auto;
+
+}
+
+.taskbar-bottom ul.help {
+	flex: auto;
+
+}
+
+.taskbar-bottom li img {
+	width: 40px;
+
+
+
+}
