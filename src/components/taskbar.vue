@@ -1,60 +1,77 @@
 <template>
-        <!-- Task Bar start -->
-    <div class="taskbar-bottom">
-      <ul class="menu">
-        <li style="float: left;">
-          <img src="../assets/From Templates/Menu.png" style="transform: scale(0.8);" />
+  <!-- Task Bar start -->
+  <div class="taskbar-bottom">
+    <ul @click="$emit('onmenuclick')" class="menu">
+      <li style="float: left;">
+        <img src="../assets/From Templates/Menu.png" style="transform: scale(0.8);" />
+      </li>
+    </ul>
+    <div class="social_bar">
+      <ul>
+        <li class="activeWindow">
+          <img
+            @click="on_socialBarClick(0)"
+            src="../assets/From Templates/Facebook.png"
+            style="transform: scale(0.7);"
+          />
         </li>
-      </ul>
-      <div class="social_bar">
-        <ul>
-          <li class="activeWindow">
-            
-            <img @click="$emit('onclicktaskbar','facebook')" src="../assets/From Templates/Facebook.png" style="transform: scale(0.7);" />
-             
-          </li>
-          <li>
-            <img src="../assets/From Templates/whatsapp.png" style="transform: scale(0.7);" />
-          </li>
-          <li>
-            <img src="../assets/From Templates/linked.png" style="transform: scale(0.9);" />
-          </li>
-          <li>
-            <img src="../assets/From Templates/Github.png" style="transform: scale(0.8);" />
-          </li>
-          <li>
-            <img src="../assets/From Templates/G-mail.png" style="transform: scale(0.8);" />
-          </li>
-        </ul>
-      </div>
-      <ul class="help">
-        <li style="float: right;">
-          <img src="../assets/From Templates/Help.png" style="transform: scale(0.7);" />
+        <li>
+          <img
+            @click="on_socialBarClick(1)"
+            src="../assets/From Templates/whatsapp.png"
+            style="transform: scale(0.7);"
+          />
         </li>
-        <li class="noR" style="margin-top: 10px;">
-          ENG
+        <li>
+          <img
+            @click="on_socialBarClick(2)"
+            src="../assets/From Templates/linked.png"
+            style="transform: scale(0.9);"
+          />
         </li>
-        <li class="noR" style="margin-top: 10px;">
-          2:45 PM
+        <li>
+          <img
+            @click="on_socialBarClick(3)"
+            src="../assets/From Templates/Github.png"
+            style="transform: scale(0.8);"
+          />
+        </li>
+        <li>
+          <img
+            @click="on_socialBarClick(4)"
+            src="../assets/From Templates/G-mail.png"
+            style="transform: scale(0.8);"
+          />
         </li>
       </ul>
     </div>
-    <!-- end Task Bar -->
+    <ul class="help">
+      <li style="float: right;">
+        <img src="../assets/From Templates/Help.png" style="transform: scale(0.7);" />
+      </li>
+      <li class="noR" style="margin-top: 10px;">ENG</li>
+      <li class="noR" style="margin-top: 10px;">2:45 PM</li>
+    </ul>
+  </div>
+  <!-- end Task Bar -->
 </template>
 
 <script>
 export default {
-    name: "task bar",
-   
-  
-
-
-
-
-}
+  name: "taskbar",
+  data() {
+    return {
+      isopen: [false, false, false, false, false],
+    };
+  },
+  methods: {
+    on_socialBarClick: function (f) {
+      this.$emit("onclicktaskbar", f);
+    },
+  },
+};
 </script>
 <style scoped>
-
 /* Task Bar */
 .taskbar-bottom {
   width: 100%;
@@ -85,7 +102,7 @@ export default {
 .taskbar-bottom ul li:hover {
   opacity: 1;
   background: #00000090;
-  filter: brightness(150%)
+  filter: brightness(150%);
 }
 
 .taskbar-bottom ul.menu {
@@ -120,8 +137,7 @@ export default {
 }
 
 /* Task Bar end */
-@media (max-width:440px) {
-
+@media (max-width: 440px) {
   /* Task Bar */
   .taskbar-bottom ul.help li.noR {
     display: none;

@@ -1,0 +1,27 @@
+{
+  "0": {
+    "title": "facebook",
+    "route": "./templates/facebook.html",
+    "plugin": ""
+  },
+  "1": {
+    "title": "whatsApp",
+    "route": "./templates/whatapp.html",
+    "plugin": ""
+  },
+  "2": {
+    "title": "linked",
+    "route": "",
+    "plugin": "./templates/linked.html"
+  },
+  "3": {
+    "title": "github",
+    "route": "./templates/github.html",
+    "plugin": "https://unpkg.com/github-card@1.2.1/dist/widget.js"
+  },
+  "4": {
+    "title": "Gmail",
+    "route": "./templates/gmail.html",
+    "plugin": ""
+  }
+}

@@ -1,54 +1,99 @@
-<template>
-
-  <div class="window_box" data-x="0" data-y="0" id="window_box" v-if="is">
+<template  >
+  <div
+    v-bind:class="[classd, window_box_Id]"
+    class="window_box"
+    data-x="0"
+    data-y="0"
+    id="window_box"
+    v-if="is"
+  >
     <div class="actionBar">
-      
-      <img src="../assets/From Templates/close.png" @click="is= !is" id="close" />
-      <img src="../assets/From Templates/minimize.png" id="minimize" />
-      <img src="../assets/From Templates/screen.png" id="screen" />
+      <img
+        src="../assets/From Templates/close.png"
+        @click="close()"
+        id="close"
+      />
+      <img
+        src="../assets/From Templates/minimize.png"
+        @click="minimize"
+        id="minimize"
+      />
+      <img
+        src="../assets/From Templates/screen.png"
+        @click="screen()"
+        id="screen"
+      />
     </div>
-    <div id="window_holder">
 
-<button id="lk"  @click="addElem"> CLick vue </button>
-
+    <div :id="holder_Id" class="window_holder">
+      <!-- Placeholder -->
     </div>
-
   </div>
-  
 </template>
+
 <script>
 import interact from "interactjs";
-
-
+import { bus } from "../main";
 
 export default {
   name: "window",
   methods: {
-addElem: function () {
-console.log("klklk");
-  
-}
+    close: function () {
+      this.is = false;
 
+      try {
+        //  document.body.removeChild(script);
+      } catch (e) {
+        console.error(e);
+      }
+      bus.$emit("closewindow", this.id);
+    },
+    minimize: function () {
+      this.$emit("minimizeone", this.id);
+      this.isminimize = true;
+    },
+    screen: function (v) {
+      var ld = document.getElementById("window_box");
+
+      ld.style.width = 100 + "%";
+      ld.style.height = 100 + "%";
+      console.log(ld.className);
+      console.log(v);
+    },
   },
   data() {
     return {
       is: true,
+      classd: "",
+      isminimize: false,
+      window_box_Id: "windowBox_id" + this.id,
+      holder_Id: "holder_id" + this.id,
     };
   },
-  computed: {
-    close: function () {
-  
-       return this.is;
-    },
-  },
-
+  props: ["id"],
   mounted() {
-    resizeanddrag();
+    console.warn("Mounted Windoes ");
+    resizeanddrag(this.window_box_Id);
+    bus.$on("open", (id) => {
+      console.log("trigger Open", id, this.id);
+      if (id == this.id) {
+        this.isminimize = false;
+      }
+    });
+    // var data = getRoutorRawData();
+    setRawData(this.id,this.holder_Id);
+
+  },
+  watch: {
+    isminimize: function (val) {
+      this.classd = val == true ? "minimize" : "oncurrent";
+      console.log("Value Change", val);
+    },
   },
 };
 
-function resizeanddrag() {
-  interact(".window_box")
+function resizeanddrag(window_box_clas) {
+  interact("."+window_box_clas)
     .draggable({
       modifiers: [
         interact.modifiers.restrict({
@@ -114,42 +159,132 @@ function resizeanddrag() {
       inertia: true,
     });
 }
+var root = document.getElementsByTagName("template");
+console.log(root);
+async function setRawData(id,window_holder_id) {
+  var data = fetch("./routor.json");
+  var routeG = null;
+  var pluginG = null;
+  await data
+    .then((responce) => {
+      return responce.json();
+    })
+    .then((data) => {
+      var Rdata = data[id];
+      var plugin = Rdata["plugin"];
+      var route = Rdata["route"];
+      console.log("SETRAW DATA PLUG AND ROUTE", plugin, route);
+      // add Pluging to dom
+      routeG = route;
+      pluginG = plugin;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+  console.log("ELEMENT IS", document.getElementById(window_holder_id),"id = "+ window_holder_id)
+          document.getElementById(window_holder_id).innerHTML = this.response;
+          if (pluginG != "") {
+            var script = document.createElement("script");
+            script.setAttribute("src", pluginG);
+            document.body.appendChild(script);
+
+            setTimeout(() => {
+              document.body.removeChild(script);
+            }, 10000);
+          }
+        }
+      };
+      xhttp.open("GET", routeG, false);
+      xhttp.send(null);
+    })
+    .catch((error) => {
+      console.error("Cannot Get value from .routorJson" + error);
+      return null;
+    });
+  console.log("after pass data ");
+
+  console.log(pluginG);
+}
+
+// function getRoutorRawData() {
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function () {
+//     if (this.readyState == 4 && this.status == 200) {
+//       var jsonObject = JSON.parse(this.response);
+//       console.log(jsonObject);
+//       return jsonObject;
+//     } else {
+//       return null;
+//     }
+//   };
+//   xhttp.open("GET", "./routor.json", true);
+//   xhttp.send(null);
+// }
 </script>
 <style scoped>
 template {
   overflow: hidden;
   padding: 100px;
+  background: green;
 }
+
+.minimize {
+  animation: minimizing 1s;
+  animation-fill-mode: forwards;
+}
+.oncurrent {
+  display: block;
+  transform: translateY(0);
+}
+@keyframes minimizing {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(300%);
+    display: none;
+  }
+}
+
 .window_box {
-  position: relative;
-  width: 800px;
-  height: 50vh;
+  width: 100%;
+  height: 100%;
   background: rgba(24, 9, 49, 0.8);
- 
   left: 0;
-  touch-action: auto;
   box-sizing: border-box;
-  overflow: auto;
+  padding-bottom: 20px;
+  position: relative;
+  object-fit: cover;
+  touch-action: auto;
   top: 10px;
   touch-action: none;
   user-select: none;
   z-index: 112;
-  box-shadow:white 0 10px 10px -5px;
+  box-shadow: white 0 10px 10px -5px;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+div.window_box ::-webkit-scrollbar {
+  display: none;
 }
 .window_box::before {
   content: none;
 }
-#window_holder {
+.window_holder {
+  position: relative;
+  margin: auto;
   width: 100%;
-   padding: 5px;
+  max-height: 100vh;
+  height: 100%;
+  padding: 5px;
+  overflow: auto;
 }
 .window_box .actionBar {
   width: 100%;
   padding: 2px;
-  border-radius:2px;
-   background:black;
-   overflow: auto;
-
+  position: sticky;
+  border-radius: 2px;
+  background: black;
+  overflow: auto;
 }
 .window_box .actionBar img {
   padding: 4px;
@@ -161,7 +296,6 @@ template {
 .window_box .actionBar #screen {
 }
 .window_box .actionBar #close {
-  hj
 }
 
 .window_box .actionBar img:hover {

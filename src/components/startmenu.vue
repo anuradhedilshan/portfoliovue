@@ -1,117 +1,129 @@
 <template>
-        <!-- StartMenu star -->
-    <div class="start_menu_box row mb-2" style="width: 100%;">
-    
-      <div class="start_menu col-11 col-md-5 col-lg-5 col-sm-11 bg-dark">
-        <div class="col-7 float-left">
-          <ul class="fav-applications" style="list-style: none;">
-            <li>
-              <h6>Fav Applications</h6>
-            </li>
-            <li>
-              <img src="..\assets\From Templates\fav_applications\androidStudio.png" />
-              Android Studio
-            </li>
-            <li>
-              <img src="..\assets\From Templates\fav_applications\chrome.png" />
-              Google Chorme
-            </li>
-            <li>
-              <img src="..\assets\From Templates\fav_applications\opera.png" />
-              Opera Mini
-            </li>
-            <li>
-              <img src="..\assets\From Templates\fav_applications\pycharm.png" />
-              Py Charm
-            </li>
-            <li>
-              <img src="..\assets\From Templates\fav_applications\sublime_text.png" />
-              Sublime Text
-            </li>
-            <li>
-              <img src="..\assets\From Templates\fav_applications\vs-code.png" />
-              VS-Code
-            </li>
-          </ul>
+  <!-- StartMenu star -->
+  <div   class=" start_menu_box row mb-2 " style="width: 100%;">
+    <div class="start_menu col-11 col-md-5 col-lg-5 col-sm-11 bg-dark">
+      <div class="col-7 float-left">
+        <ul class="fav-applications" style="list-style: none;">
+          <li>
+            <h6>Fav Applications</h6>
+          </li>
+          <li>
+            <img src="..\assets\From Templates\fav_applications\androidStudio.png" />
+            Android Studio
+          </li>
+          <li>
+            <img src="..\assets\From Templates\fav_applications\chrome.png" />
+            Google Chorme
+          </li>
+          <li>
+            <img src="..\assets\From Templates\fav_applications\opera.png" />
+            Opera Mini
+          </li>
+          <li>
+            <img src="..\assets\From Templates\fav_applications\pycharm.png" />
+            Py Charm
+          </li>
+          <li>
+            <img src="..\assets\From Templates\fav_applications\sublime_text.png" />
+            Sublime Text
+          </li>
+          <li>
+            <img src="..\assets\From Templates\fav_applications\vs-code.png" />
+            VS-Code
+          </li>
+        </ul>
 
-          <div class="updates">
-           
-        <h6 style="color: white;">Updates</h6>
+        <div class="updates">
+          <h6 style="color: white;">Updates</h6>
 
-        <img src="https://picsum.photos/260/237" alt="">
-          </div>
-
-
-          <ul class="power_options">
-            <li>
-              <h6>Power Options</h6>
-            </li>
-            <li class="power_option_item">
-              <img style="transform:scale(1.3) translateY(-4px);"
-                src="https://img.icons8.com/cotton/64/000000/rating.png" />
-              Rate my work
-            </li>
-            <li class="power_option_item">
-              <img src="https://img.icons8.com/cute-clipart/64/000000/share.png" />
-              Share
-            </li>
-            <li class="power_option_item">
-              <img src="https://img.icons8.com/cotton/64/000000/power-off-button.png" />Power
-            </li>
-          </ul>
+          <img src="https://picsum.photos/260/237" alt />
         </div>
 
-        <div class="col-5  float-right mt-2 mb-2 blogBox">
-          <ul class="blog" style="list-style: none;">
-            <li style="padding: 2px; color: white;">
-              <h6>My Blog</h6>
-            </li>
-        
-            <li class="blog_item">
-              <img src="../assets/From Templates/whatsapp.png" alt="">
-              <span>hello world hello worldhello .......Read more </span>
-            </li>
-            <li class="blog_item">
-              <img src="https://picsum.photos/137/137" alt="">
-              <span>hello world hello worldhello .......Read more </span>
-            </li>
-            <li class="blog_item">
-              <img src="https://picsum.photos/137/137" alt="">
-              <span>hello world hello worldhello .......Read more </span>
-            </li><li class="blog_item">
-              <img src="https://picsum.photos/137/137" alt="">
-              <span>hello world hello worldhello .......Read more </span>
-            </li>
-    
-          </ul>
-        </div>
+        <ul class="power_options">
+          <li>
+            <h6>Power Options</h6>
+          </li>
+          <li class="power_option_item">
+            <img
+              style="transform:scale(1.3) translateY(-4px);"
+              src="https://img.icons8.com/cotton/64/000000/rating.png"
+            />
+            Rate my work
+          </li>
+          <li class="power_option_item">
+            <img src="https://img.icons8.com/cute-clipart/64/000000/share.png" />
+            Share
+          </li>
+          <li class="power_option_item">
+            <img src="https://img.icons8.com/cotton/64/000000/power-off-button.png" />Power
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-5 float-right mt-2 mb-2 blogBox">
+        <ul class="blog" style="list-style: none;">
+          <li style="padding: 2px; color: white;">
+            <h6>My Blog</h6>
+          </li>
+
+          <li class="blog_item">
+            <img src="../assets/From Templates/whatsapp.png" alt />
+            <span>hello world hello worldhello .......Read more</span>
+          </li>
+          <li class="blog_item">
+            <img src="https://picsum.photos/137/137" alt />
+            <span>hello world hello worldhello .......Read more</span>
+          </li>
+          <li class="blog_item">
+            <img src="https://picsum.photos/137/137" alt />
+            <span>hello world hello worldhello .......Read more</span>
+          </li>
+          <li class="blog_item">
+            <img src="https://picsum.photos/137/137" alt />
+            <span>hello world hello worldhello .......Read more</span>
+          </li>
+        </ul>
       </div>
     </div>
-    <!-- StartMenu End -->
+  </div>
+  <!-- StartMenu End -->
 </template>
 
 <script>
 export default {
-    name: "startMenuxd",
+  name: "startMenu",
+  data() {
+    return {
+      is: false,
+      holder_class: "open"
+    };
+  },
+  methods:{
+    onStartMenu: function (){
+      console.log("On Start menu Click");
+      this.is = ! this.is;
+    }
+  },
 
-}
+  
+};
 </script>
 
 <style scoped>
 /* StartMenu */
 .start_menu_box {
-  min-height: 250px;
+  
   padding-top: 50px;
-  height: 100vh;
-  display:block;
+  height: 0;
+  display: block;
   position: absolute;
   z-index: 100;
   left: 0;
   bottom: 45px;
   overflow: auto;
 
-
 }
+
 
 .start_menu::-webkit-scrollbar {
   width: 5px;
@@ -241,5 +253,4 @@ export default {
 }
 
 /* StatMenu End */
-
 </style>
